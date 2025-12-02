@@ -198,7 +198,23 @@
       .hero{grid-template-columns:minmax(0,1fr);padding-top:40px}
       .hero-visual{order:-1}
     }
-  </style>
+  
+/* Snow effect */
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: white;
+  pointer-events: none;
+  user-select: none;
+  animation: fall linear infinite;
+  z-index: 9999;
+}
+@keyframes fall {
+  0% { transform: translateY(-10vh); }
+  100% { transform: translateY(110vh); }
+}
+
+</style>
 </head>
 <body>
   <div class="page">
@@ -488,5 +504,22 @@
       </p>
     </footer>
   </div>
+
+<script>
+function createSnow() {
+  for (let i = 0; i < 70; i++) {
+    let s = document.createElement("div");
+    s.className = "snowflake";
+    s.innerHTML = "❄";
+    s.style.left = Math.random() * 100 + "vw";
+    s.style.animationDuration = (6 + Math.random() * 8) + "s";
+    s.style.opacity = 0.3 + Math.random() * 0.7;
+    s.style.fontSize = (8 + Math.random() * 12) + "px";
+    document.body.appendChild(s);
+  }
+}
+createSnow();
+</script>
+
 </body>
 </html>
