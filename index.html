@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vex – Roblox Rivals Clan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Vex is a competitive Roblox Rivals clan. Join our Discord, play ranked, and climb with a focused and friendly community."
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0c0f18;
+      --card: #111623;
+      --accent1: #35ffd0;
+      --accent2: #ffd045;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --radius-xl: 1.25rem;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.7);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:"Poppins",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:radial-gradient(circle at top,#15192a 0,#020308 55%);
+      color:var(--text-main);
+      min-height:100vh;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .page{max-width:1100px;margin:0 auto;padding:20px 16px 60px}
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:10px 14px;border-radius:999px;
+      background:rgba(6,10,20,.9);
+      border:1px solid var(--border-subtle);
+      backdrop-filter:blur(16px);
+      box-shadow:var(--shadow-soft);
+      position:sticky;top:14px;z-index:20;
+    }
+    .nav-left{display:flex;align-items:center;gap:10px}
+    .logo-wrap{
+      width:40px;height:40px;border-radius:999px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.25);
+      box-shadow:0 0 14px rgba(53,255,208,.6);
+    }
+    .brand{display:flex;flex-direction:column;line-height:1.1}
+    .brand-name{
+      font-size:1.05rem;font-weight:600;letter-spacing:.08em;
+      text-transform:uppercase;
+      background:linear-gradient(120deg,var(--accent1),var(--accent2));
+      -webkit-background-clip:text;color:transparent;
+    }
+    .brand-subtitle{font-size:.7rem;color:var(--text-muted)}
+    .nav-links{display:flex;gap:18px;font-size:.85rem}
+    .nav-links a{position:relative;color:var(--text-muted)}
+    .nav-links a::after{
+      content:"";position:absolute;left:0;bottom:-4px;width:0;height:2px;
+      border-radius:999px;
+      background:linear-gradient(120deg,var(--accent1),var(--accent2));
+      transition:width .2s ease-out;
+    }
+    .nav-links a:hover{color:var(--text-main)}
+    .nav-links a:hover::after{width:100%}
+    .btn-discord{
+      padding:6px 16px;border-radius:999px;border:none;cursor:pointer;
+      background:linear-gradient(120deg,var(--accent1),var(--accent2));
+      color:#020308;font-size:.78rem;font-weight:600;
+      display:inline-flex;align-items:center;gap:8px;
+      box-shadow:0 0 18px rgba(53,255,208,.55);
+      transition:transform .12s ease-out,box-shadow .12s ease-out,filter .12s ease-out;
+    }
+    .btn-discord span{font-size:.9rem}
+    .btn-discord:hover{
+      transform:translateY(-1px);filter:brightness(1.03);
+      box-shadow:0 0 24px rgba(255,208,69,.6);
+    }
+    .hero{
+      display:grid;
+      grid-template-columns:minmax(0,3.2fr) minmax(0,2.3fr);
+      gap:32px;padding:60px 6px 40px;align-items:center;
+    }
+    .hero-title{
+      font-size:clamp(2rem,3vw,2.5rem);
+      font-weight:700;letter-spacing:.05em;
+      text-transform:uppercase;margin-bottom:10px;
+    }
+    .hero-title span{
+      background:linear-gradient(120deg,var(--accent1),var(--accent2));
+      -webkit-background-clip:text;color:transparent;
+    }
+    .hero-sub{
+      font-size:.98rem;color:var(--text-muted);
+      max-width:480px;margin-bottom:18px;
+    }
+    .hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+    .tag{
+      font-size:.7rem;padding:4px 10px;border-radius:999px;
+      border:1px solid var(--border-subtle);
+      background:rgba(10,13,26,.8);color:var(--text-muted);
+      display:inline-flex;align-items:center;gap:6px;
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+    .hero-note{font-size:.75rem;color:var(--text-muted)}
+    .hero-visual{justify-self:center;width:100%;max-width:360px}
+    .server-card{
+      border-radius:var(--radius-xl);
+      background:radial-gradient(circle at top left,#28304a 0,#05060a 55%);
+      border:1px solid rgba(120,128,170,.45);
+      padding:18px 16px;box-shadow:var(--shadow-soft);
+      position:relative;overflow:hidden;
+    }
+    .server-header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+    .server-icon{
+      width:40px;height:40px;border-radius:14px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.25);
+    }
+    .server-info-title{font-size:.95rem;font-weight:600}
+    .server-status{font-size:.7rem;color:var(--text-muted)}
+    .online-dot{width:8px;height:8px;border-radius:999px;background:#3ba55d;display:inline-block;margin-right:4px}
+    .server-channels,.server-staff{
+      margin-top:10px;font-size:.75rem;color:var(--text-muted);
+      display:grid;gap:4px;
+    }
+    .section{
+      margin-top:40px;padding:28px 18px;border-radius:var(--radius-xl);
+      background:radial-gradient(circle at top,#151929 0,#050711 55%);
+      border:1px solid var(--border-subtle);box-shadow:var(--shadow-soft);
+    }
+    .section-header{
+      display:flex;justify-content:space-between;align-items:baseline;
+      gap:8px;margin-bottom:18px;
+    }
+    .section-title{font-size:1.1rem;font-weight:600}
+    .section-subtitle{font-size:.78rem;color:var(--text-muted)}
+    .grid{display:grid;gap:14px}
+    @media (min-width:720px){
+      .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    .card{
+      background:linear-gradient(145deg,#111623,#090c16);
+      border-radius:16px;border:1px solid var(--border-subtle);
+      padding:14px 12px;font-size:.83rem;color:var(--text-muted);
+      position:relative;overflow:hidden;
+    }
+    .card-title{font-size:.9rem;font-weight:500;color:var(--text-main);margin-bottom:6px}
+    .pill{
+      font-size:.68rem;padding:2px 8px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);color:var(--text-muted);
+    }
+    .card-row{
+      display:flex;justify-content:space-between;align-items:center;
+      gap:12px;margin-bottom:6px;
+    }
+    .accent-line{
+      position:absolute;inset:auto -40%;height:1px;
+      background:linear-gradient(90deg,transparent,rgba(53,255,208,.7),rgba(255,208,69,.9),transparent);
+      opacity:.6;
+    }
+    .staff-grid{display:grid;gap:12px}
+    @media (min-width:540px){
+      .staff-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    .staff-item{
+      display:flex;align-items:center;gap:10px;
+      padding:10px 10px;border-radius:999px;
+      background:#0c111c;border:1px solid var(--border-subtle);
+    }
+    .pfp{
+      width:32px;height:32px;border-radius:999px;
+      background:radial-gradient(circle at 30% 0,#ffffff 0,#15151d 48%);
+      display:inline-flex;align-items:center;justify-content:center;
+      font-size:.7rem;font-weight:600;color:#f9fafb;
+    }
+    .staff-meta{display:flex;flex-direction:column;gap:2px}
+    .staff-name{font-size:.85rem;font-weight:500}
+    .staff-role{font-size:.72rem;color:var(--text-muted)}
+    .staff-tag{
+      margin-left:auto;font-size:.7rem;padding:2px 8px;border-radius:999px;
+      background:rgba(53,255,208,.08);color:var(--accent1);
+      border:1px solid rgba(53,255,208,.4);
+    }
+    footer{
+      margin-top:40px;font-size:.7rem;
+      color:var(--text-muted);text-align:center;
+    }
+    footer a{color:var(--accent1)}
+    @media (max-width:799px){
+      .nav{flex-wrap:wrap;gap:8px}
+      .nav-links{display:none}
+      .hero{grid-template-columns:minmax(0,1fr);padding-top:40px}
+      .hero-visual{order:-1}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="nav">
+      <div class="nav-left">
+        <div class="logo-wrap">
+          <img src="data:image/png;base64,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" alt="Vex clan logo" />
+        </div>
+        <div class="brand">
+          <span class="brand-name">Vex</span>
+          <span class="brand-subtitle">Roblox Rivals Clan</span>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#owners">Owners</a>
+        <a href="#playstyle">Playstyle</a>
+        <a href="#join">Join</a>
+      </nav>
+      <a href="https://discord.gg/js8pg9JW" target="_blank" rel="noopener">
+        <button class="btn-discord">
+          <span>Join Discord</span>
+          <span>⤴</span>
+        </button>
+      </a>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1 class="hero-title">
+          Welcome to <span>Vex</span>
+        </h1>
+        <p class="hero-sub">
+          A focused Roblox Rivals clan built around clean comms, smart plays and
+          chill vibes. Queue up, grind ranked and grow with a squad that takes
+          winning seriously without killing the fun.
+        </p>
+        <div class="hero-tags">
+          <span class="tag">Roblox Rivals</span>
+          <span class="tag">Sweaty but friendly</span>
+          <span class="tag">Discord based</span>
+        </div>
+        <div class="hero-actions">
+          <a href="https://discord.gg/js8pg9JW" target="_blank" rel="noopener">
+            <button class="btn-discord">
+              <span>Join the Vex server</span>
+            </button>
+          </a>
+          <p class="hero-note">
+            Tryouts, scrims and ranked squads all happen on Discord.
+          </p>
+        </div>
+      </div>
+      <aside class="hero-visual">
+        <div class="server-card">
+          <div class="server-header">
+            <div class="server-icon">
+              <img src="data:image/png;base64,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" alt="Vex icon" />
+            </div>
+            <div>
+              <div class="server-info-title">Vex</div>
+              <div class="server-status">
+                <span class="online-dot"></span>
+                Active Roblox Rivals community
+              </div>
+            </div>
+          </div>
+          <div class="server-channels">
+            <div>▣ # mainchat ・ clan hub</div>
+            <div>▣ # ranked ・ queue & stack</div>
+            <div>▣ # clips-en-hoogtepunten ・ highlights</div>
+            <div>▣ # 1v1 / duo / trio / squad rooms</div>
+          </div>
+          <div class="server-staff" style="margin-top: 12px">
+            <div>Staff online</div>
+            <div>• MB (owner) • Suit (owner) • Aegis • azote • F3mb0y • idk:p</div>
+          </div>
+          <div class="accent-line"></div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section-header">
+        <h2 class="section-title">About Vex</h2>
+        <p class="section-subtitle">
+          A Rivals clan created for people who want clean stacked lobbies and a
+          solid team to improve with.
+        </p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <div class="card-row">
+            <h3 class="card-title">Competitive but chill</h3>
+            <span class="pill">Mindset</span>
+          </div>
+          <p>
+            We like winning, but we also like having fun. Trash talk is fine as
+            long as it is friendly and doesn’t cross lines. Play serious,
+            respect teammates and keep the vibes good.
+          </p>
+        </article>
+        <article class="card">
+          <div class="card-row">
+            <h3 class="card-title">Clear comms</h3>
+            <span class="pill">Teamplay</span>
+          </div>
+          <p>
+            Callouts, info and quick decisions matter more than ego. Vex squads
+            focus on short, clear comms so everyone knows what is happening in
+            every fight.
+          </p>
+        </article>
+        <article class="card">
+          <div class="card-row">
+            <h3 class="card-title">Room to grow</h3>
+            <span class="pill">Progress</span>
+          </div>
+          <p>
+            Whether you are learning Rivals or already cracked, there is space
+            to improve here: VOD reviews, tips from better players, and
+            scrims/tryouts as the clan grows.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="owners" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Owners and staff</h2>
+        <p class="section-subtitle">
+          The people behind Vex keeping the clan organised and the server clean.
+        </p>
+      </div>
+      <div class="staff-grid">
+        <div class="staff-item">
+          <div class="pfp">MB</div>
+          <div class="staff-meta">
+            <span class="staff-name">MB</span>
+            <span class="staff-role">Owner / Lead manager</span>
+          </div>
+          <span class="staff-tag">Owner</span>
+        </div>
+        <div class="staff-item">
+          <div class="pfp">S</div>
+          <div class="staff-meta">
+            <span class="staff-name">Suit</span>
+            <span class="staff-role">Owner / Co-founder</span>
+          </div>
+          <span class="staff-tag">Owner</span>
+        </div>
+        <div class="staff-item">
+          <div class="pfp">Ae</div>
+          <div class="staff-meta">
+            <span class="staff-name">Aegis</span>
+            <span class="staff-role">Admin ・ moderation & events</span>
+          </div>
+          <span class="staff-tag">Admin</span>
+        </div>
+        <div class="staff-item">
+          <div class="pfp">Az</div>
+          <div class="staff-meta">
+            <span class="staff-name">azote</span>
+            <span class="staff-role">Admin ・ ranked & tryouts</span>
+          </div>
+          <span class="staff-tag">Admin</span>
+        </div>
+        <div class="staff-item">
+          <div class="pfp">F3</div>
+          <div class="staff-meta">
+            <span class="staff-name">F3mb0y</span>
+            <span class="staff-role">Admin ・ tech / server setup</span>
+          </div>
+          <span class="staff-tag">Admin</span>
+        </div>
+        <div class="staff-item">
+          <div class="pfp">id</div>
+          <div class="staff-meta">
+            <span class="staff-name">idk:p</span>
+            <span class="staff-role">Admin ・ scrims & lobbies</span>
+          </div>
+          <span class="staff-tag">Admin</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="playstyle" class="section">
+      <div class="section-header">
+        <h2 class="section-title">How Vex plays</h2>
+        <p class="section-subtitle">
+          Ranked, customs and content – all organised through Discord channels.
+        </p>
+      </div>
+      <div class="grid grid-2">
+        <article class="card">
+          <div class="card-row">
+            <h3 class="card-title">Ranked and scrims</h3>
+            <span class="pill">#ranked • #1v1 • #duo • #trio • #squat</span>
+          </div>
+          <p>
+            Pick your squad type, find teammates and queue up. Custom lobbies,
+            internal scrims and community tournaments can be announced in
+            events.
+          </p>
+        </article>
+        <article class="card">
+          <div class="card-row">
+            <h3 class="card-title">Clips and content</h3>
+            <span class="pill">#clips-en-hoogtepunten</span>
+          </div>
+          <p>
+            Share best moments, insane clutches and funny fails. Good clips from
+            Vex can be used in clan montages or socials later.
+          </p>
+        </article>
+        <article class="card">
+          <div class="card-row">
+            <h3 class="card-title">Rules and scout tests</h3>
+            <span class="pill">#rules • #scout-test</span>
+          </div>
+          <p>
+            Basic server rules keep the place from turning into chaos. Scout
+            tests and requirements for higher roles or ranked teams are posted
+            there.
+          </p>
+        </article>
+        <article class="card">
+          <div class="card-row">
+            <h3 class="card-title">Hi-and-bye</h3>
+            <span class="pill">#hi-and-bye</span>
+          </div>
+          <p>
+            New to Vex? Drop a hello, tell people your region and preferred
+            role, then start looking for teammates who match your energy.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="join" class="section">
+      <div class="section-header">
+        <h2 class="section-title">Join Vex</h2>
+        <p class="section-subtitle">
+          Getting in is simple. Just be active, respect others and actually play
+          Rivals.
+        </p>
+      </div>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3 class="card-title">How to join</h3>
+          <ol style="padding-left: 18px; font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;">
+            <li>Click the Join Discord button or link below.</li>
+            <li>Read the rules channel so you know what is allowed.</li>
+            <li>Say hi in hi-and-bye and tell people your rank and role.</li>
+            <li>Queue ranked in the right channel and start stacking.</li>
+          </ol>
+        </article>
+        <article class="card">
+          <h3 class="card-title">Basic expectations</h3>
+          <ul style="padding-left: 18px; font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;">
+            <li>Use comms in games where it matters.</li>
+            <li>No cheating, account sharing or weird behaviour.</li>
+            <li>Respect staff decisions – owners have the final call.</li>
+            <li>Help newer players if you are more experienced.</li>
+          </ul>
+        </article>
+      </div>
+      <div style="margin-top: 18px; text-align: center;">
+        <a href="https://discord.gg/js8pg9JW" target="_blank" rel="noopener">
+          <button class="btn-discord">
+            <span>Join the Vex Discord now</span>
+          </button>
+        </a>
+        <p class="hero-note" style="margin-top: 8px;">
+          Invite link:
+          <a href="https://discord.gg/js8pg9JW" target="_blank" rel="noopener">
+            https://discord.gg/js8pg9JW
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Vex Roblox Rivals clan. Owned by MB and Suit. This is a fan-made
+        website for the community.
+      </p>
+    </footer>
+  </div>
+</body>
+</html>
